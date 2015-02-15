@@ -28,7 +28,8 @@ import com.google.common.base.Preconditions;
  * {@link #removeMember(Object)} operations do not use any lock, should be
  * executed instantly.
  * 
- * {@link #removeBucket(Object)}, {@link #removeBucket(Object, long, TimeUnit)},
+ * {@link #removeBucket(Object)},
+ * {@link #tryRemoveBucket(Object, long, TimeUnit)},
  * {@link #getAllBucketsToMembersMapping()} and {@link #getMembersFor(Object)}
  * are using a lock.
  * 
@@ -59,7 +60,7 @@ public class ConsistentHasherImpl<B, M> implements ConsistentHasher<B, M> {
 	 * Contains a lock for the bucket, and also contains all virtual bucket
 	 * names.
 	 * 
-	 * Lock is used to achieve atomicity while doing operations on the bucket
+	 * Lock is used to achieve atomicity while doing operations on the bucket.
 	 *
 	 */
 	private static class BucketInfo {
