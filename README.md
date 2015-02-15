@@ -4,15 +4,15 @@ Contains the implementation of consistent hashing.
 Consistent hashing tries to reduce the no of elements that are getting rehashed while a bucket addition/removal happens. There are great documents available on the internet, I dont want to repeat it here.[Consistent hashing on Wikipedia](http://en.wikipedia.org/wiki/Consistent_hashing)
 
 ### Problem
-In one of my projects I was trying to divide sync tasks among set of worker nodes. In case, if a worker node dies, then other nodes have to take care of the sync tasks. A worker node addition/removal should not cause high disruption to the system, otherwise lot of sync clients will complain. Consistent hashing was the solution, as it reduces the no of elements that are getting remapped. 
+In one of my projects I was trying to divide sync tasks among set of worker nodes. In case, if a worker node dies, then other nodes have to take care of the dead node's tasks as well. A worker node addition/removal should not cause high disruption to the system, otherwise lot of sync clients will complain. Consistent hashing was the solution, as it reduces the no of elements that are getting remapped. 
 
 I was looking for a consistent hashing library that provides the following functions
 
 1. Store bucket ids.
 2. Store members.
-3. Retrieve all members that fall into a particular bucket, given teh bucket name.
-4. Implementation should have virtual buckets concept, so members to bucket distribution will be even. (More on this on the following document)
-5. A generic interface, so that I can store any kind of bucket (string, integer, custom datatype), and any kind of member.
+3. Retrieve all members that fall into a particular bucket, given the bucket name.
+4. Implementation should have virtual buckets concept, so members to bucket distribution will be even. (More on this on the following document, and for the impatient [click here](https://github.com/gomathi/ConsistentHashing#virtual-nodes))
+5. A generic interface, so that any kind of buckets (string, integer, custom datatype), and any kind of members can be stored.
 
 Unfortunately I could not find any opensource project that provided the above abilities. Guava library has a [simple consistent hashing function] (http://docs.guava-libraries.googlecode.com/git-history/release18/javadoc/com/google/common/hash/Hashing.html#consistentHash(com.google.common.hash.HashCode, int)) which does not satisfy the above requirements.
 
@@ -48,5 +48,5 @@ If few buckets are placed closely on the ring, then the members distribution to 
 
 This implementation uses the concept of virtual nodes, where each bucket will be mapped to many logical buckets. This helps in getting fair distribution of members to buckets.
 
-When you create the consistent hasher, you can specify the virtual nodes size. I got a very unfair distribution for virtual nodes size lesser than 100 for some test sets. I got a good distribution for more virtual nodes size to be greater than 700. [Output file is available here](https://github.com/gomathi/ConsistentHashing/blob/master/jars/distribution-test-output.txt). Also [ConsistentHasherImpl](https://github.com/gomathi/ConsistentHashing/blob/master/src/org/consistenthasher/ConsistentHasherImpl.java) has set of static methods to calculate the distribution for various virtual nodes size.
+When you create the consistent hasher, you can specify the virtual nodes size. I got a very unfair distribution for virtual nodes size lesser than 100 for some test sets. I got a good distribution when virtual nodes size are greater than 700. [Output file is available here](https://github.com/gomathi/ConsistentHashing/blob/master/jars/distribution-test-output.txt). Also [ConsistentHasherImpl](https://github.com/gomathi/ConsistentHashing/blob/master/src/org/consistenthasher/ConsistentHasherImpl.java) has set of static methods to calculate the distribution for various virtual nodes size. You can look at [Usage class](https://github.com/gomathi/ConsistentHashing/blob/master/src/org/consistenthasher/usage/ConsistentHasherUsage.java) how to use distribution calculation methods.
 
