@@ -40,7 +40,7 @@ Also defined a usage class at [here](https://github.com/gomathi/ConsistentHashin
 1. [Standalone jar file] (https://github.com/gomathi/ConsistentHashing/blob/master/jars/consistenthash-standalone.jar)
 2. [Jar file with dependencies] (https://github.com/gomathi/ConsistentHashing/blob/master/jars/consistenthash.jar)
 
-#### Virtual nodes
+### Virtual nodes
 
 Consistent hashing places buckets and members on a ring. Each member's corresponding bucket is found by walking clockwise on the ring, and whichever bucket comes first is the owner of the member. 
 
