@@ -118,13 +118,13 @@ public interface ConsistentHasher<B, M> {
 	 * @param members
 	 * @return
 	 * @throws NullPointerException
-	 *             , if the given argument is null.
+	 *             , if any of the arguments is null.
 	 */
 	List<M> getMembersFor(B bucketName, List<M> members);
 
 	/**
-	 * Returns all members that are stored. If there are no members, returns an
-	 * empty list.
+	 * Returns all members that are stored in this instance. If there are no
+	 * members, returns an empty list.
 	 * 
 	 * @return
 	 */
