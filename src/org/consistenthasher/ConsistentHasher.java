@@ -40,8 +40,10 @@ public interface ConsistentHasher<B, M> {
 	 * members of the given bucket. To avoid that, a lock is used on every
 	 * physical bucket. If there is a call {@link #getMembersFor(Object)}
 	 * getting executed, then this method waits until all those threads to
-	 * finish. If you don't want , then use
-	 * {@link #removeBucket(Object, long, TimeUnit)}
+	 * finish. In worst case this function might wait for the lock for longer
+	 * period of time if multiple readers are using the same lock, and if you
+	 * want to return in fixed amount of time then use
+	 * {@link #tryRemoveBucket(Object, long, TimeUnit)}
 	 * 
 	 * @param bucketName
 	 * @throws NullPointerException
