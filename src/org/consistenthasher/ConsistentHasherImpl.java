@@ -188,7 +188,7 @@ public class ConsistentHasherImpl<B, M> implements ConsistentHasher<B, M> {
 	}
 
 	@Override
-	public List<M> getMembersFor(B bucketName, List<M> members) {
+	public List<M> getMembersFor(B bucketName, List<? extends M> members) {
 		Preconditions.checkNotNull(members, "Members can not be null.");
 		NavigableMap<ByteBuffer, M> localMembersMap = new TreeMap<>();
 		members.forEach(member -> {

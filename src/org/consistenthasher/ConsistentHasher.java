@@ -120,7 +120,7 @@ public interface ConsistentHasher<B, M> {
 	 * @throws NullPointerException
 	 *             , if any of the arguments is null.
 	 */
-	List<M> getMembersFor(B bucketName, List<M> members);
+	List<M> getMembersFor(B bucketName, List<? extends M> members);
 
 	/**
 	 * Returns all members that are stored in this instance. If there are no
