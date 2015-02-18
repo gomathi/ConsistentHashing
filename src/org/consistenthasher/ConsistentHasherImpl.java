@@ -112,7 +112,7 @@ public class ConsistentHasherImpl<B, M> implements ConsistentHasher<B, M> {
 	private ByteBuffer convertAndApplyHash(int virtualNode, B bucketName) {
 		byte[] bucketNameInBytes = bucketDataToBytesConverter
 				.convert(bucketName);
-		byte[] bucketNameAndCode = new byte[Integer.BYTES / Byte.BYTES
+		byte[] bucketNameAndCode = new byte[(Integer.BYTES / Byte.BYTES)
 				+ bucketNameInBytes.length];
 		ByteBuffer bb = ByteBuffer.wrap(bucketNameAndCode);
 		bb.put(bucketNameInBytes);
