@@ -273,7 +273,8 @@ public class ConsistentHasherImpl<B, M> implements ConsistentHasher<B, M> {
 			int startVirtNodeId, int endVirtNodeId,
 			BytesConverter<B> bucketDataToBytesConverter,
 			BytesConverter<M> memberDataToBytesConverter,
-			HashFunction hashFunction, List<B> buckets, List<M> members) {
+			HashFunction hashFunction, List<? extends B> buckets,
+			List<? extends M> members) {
 		Map<Integer, Map<B, List<M>>> result = new HashMap<>();
 		for (int virtNodeId = startVirtNodeId; virtNodeId <= endVirtNodeId; virtNodeId++) {
 			ConsistentHasher<B, M> cHasher = new ConsistentHasherImpl<>(
@@ -309,7 +310,8 @@ public class ConsistentHasherImpl<B, M> implements ConsistentHasher<B, M> {
 			int startVirtNodeId, int endVirtNodeId,
 			BytesConverter<B> bucketDataToBytesConverter,
 			BytesConverter<M> memberDataToBytesConverter,
-			HashFunction hashFunction, List<B> buckets, List<M> members) {
+			HashFunction hashFunction, List<? extends B> buckets,
+			List<? extends M> members) {
 		Map<Integer, Map<B, List<M>>> distribution = getDistribution(
 				startVirtNodeId, endVirtNodeId, bucketDataToBytesConverter,
 				memberDataToBytesConverter, hashFunction, buckets, members);
@@ -344,7 +346,8 @@ public class ConsistentHasherImpl<B, M> implements ConsistentHasher<B, M> {
 			int startVirtNodeId, int endVirtNodeId,
 			BytesConverter<B> bucketDataToBytesConverter,
 			BytesConverter<M> memberDataToBytesConverter,
-			HashFunction hashFunction, List<B> buckets, List<M> members) {
+			HashFunction hashFunction, List<? extends B> buckets,
+			List<? extends M> members) {
 		Map<Integer, Map<B, List<M>>> distribution = getDistribution(
 				startVirtNodeId, endVirtNodeId, bucketDataToBytesConverter,
 				memberDataToBytesConverter, hashFunction, buckets, members);
