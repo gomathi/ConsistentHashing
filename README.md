@@ -51,3 +51,4 @@ This implementation uses the concept of virtual nodes, where each bucket will be
 
 When you create the consistent hasher, you can specify the virtual nodes size. I got a very unfair distribution for virtual nodes size lesser than 100 for some test sets. I got a good distribution when virtual nodes size are greater than 700. [Output file is available here](https://github.com/gomathi/ConsistentHashing/blob/master/jars/distribution-test-output.txt). Also [ConsistentHasherImpl](https://github.com/gomathi/ConsistentHashing/blob/master/src/org/consistenthasher/ConsistentHasherImpl.java) has set of static methods to calculate the distribution for various virtual nodes size. You can look at [Usage class](https://github.com/gomathi/ConsistentHashing/blob/master/src/org/consistenthasher/usage/ConsistentHasherUsage.java) how to use distribution calculation methods.
 
+
