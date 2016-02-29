@@ -4,6 +4,7 @@ Contains the implementation of consistent hashing.
 Consistent hashing tries to reduce the no of elements that are getting rehashed while a bucket addition/removal happens. There are great documents available on the Internet, I dont want to repeat it here. For newcomers, read [Consistent hashing on Wikipedia](http://en.wikipedia.org/wiki/Consistent_hashing)
 
 ### Problem
+
 In one of my projects I was trying to divide sync tasks among set of worker nodes. In case, if a worker node dies, then other nodes have to take care of the dead node's tasks as well. A worker node addition/removal should not cause high disruption to the system, otherwise lot of sync clients will complain. Consistent hashing was the solution, as it reduces the no of elements that are getting remapped. 
 
 I was looking for a consistent hashing library that provides the following functions
